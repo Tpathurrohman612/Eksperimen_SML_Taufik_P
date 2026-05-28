@@ -30,7 +30,7 @@ jobs:
 
     - name: 4. Jalankan script preprocessing
       run: |
-        python preprocessing/automate_Taufik_P.py --input_dir la-liga-2014-2020_raw/combined_data_laliga.csv --output la-liga-2014-2020_preprocessing/la_liga_cleaned.csv
+        python preprocessing/automate_Taufik_P.py --input la-liga-2014-2020_raw/combined_data_laliga.csv --output preprocessing/la-liga-2014-2020_preprocessing/la_liga_cleaned.csv
     
     - name: 5. Commit dan Push Dataset terbaru ke Repository
       run: |
