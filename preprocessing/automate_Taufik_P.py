@@ -145,9 +145,9 @@ def run_preprocessing(input_path, output_path):
 if __name__ == "__main__":
     try:
         parser = argparse.ArgumentParser(description='Otomatisasi Preprocessing Dataset Sepak Bola')
-        parser.add_argument('--input', type=str, default='../la-liga-2014-2020_raw/combined_data_laliga.csv', 
+        parser.add_argument('--input', type=str, default='la-liga-2014-2020_raw/combined_data_laliga.csv', 
                             help='Jalur akses menuju file dataset mentah')
-        parser.add_argument('--output', type=str, default='./la-liga-2014-2020_preprocessing/la_liga_cleaned.csv', 
+        parser.add_argument('--output', type=str, default='la-liga-2014-2020_preprocessing/la_liga_cleaned.csv', 
                             help='Jalur penyimpanan untuk file hasil preprocessing')
         
         args = parser.parse_args()

@@ -2,17 +2,12 @@ name: Automated Preprocessing Pipeline
 
 on:
   push:
-    paths:
-      - 'la-liga-2014-2020_raw/**'
-      - 'preprocessing/**'
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
   build-and-preprocess:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
 
     steps:
     - name: 1. Checkout repository
@@ -30,11 +25,10 @@ jobs:
 
     - name: 4. Jalankan script preprocessing
       run: |
-        python preprocessing/automate_Taufik_P.py --input la-liga-2014-2020_raw/combined_data_laliga.csv --output preprocessing/la-liga-2014-2020_preprocessing/la_liga_cleaned.csv
+        python automate_Taufik_P.py --input la-liga-2014-2020_raw/combined_data_laliga.csv --output la-liga-2014-2020_preprocessing/la_liga_cleaned.csv
     
-    - name: 5. Commit dan Push Dataset terbaru ke Repository
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
-        git add preprocessing/la-liga-2014-2020_preprocessing/la_liga_cleaned.csv
-        git diff --quiet && git diff --staged --quiet || (git commit -m "bot: auto-update dataset bersih dari GitHub Actions" && git push)
+    - name: 5. Upload Clean Dataset as Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: clean-dataset-artifact
+        path: la-liga-2014-2020_preprocessing/la_liga_cleaned.csv
